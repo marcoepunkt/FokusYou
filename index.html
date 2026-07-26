@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>FokusYou</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FokusYou</p>
+        <h1 id="greeting">Guten Morgen</h1>
+      </div>
+      <button class="icon-button" id="settingsButton" aria-label="Einstellungen">⚙️</button>
+    </header>
+
+    <main>
+      <section class="hero card">
+        <div>
+          <p class="muted">Dein heutiger Fortschritt</p>
+          <h2><span id="todayDone">0</span> von <span id="todayTotal">0</span> erledigt</h2>
+        </div>
+        <div class="progress-ring" id="progressRing" aria-label="Tagesfortschritt">
+          <span id="progressPercent">0%</span>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div>
+          <p class="eyebrow">Heute</p>
+          <h2>Deine Routinen</h2>
+        </div>
+        <button class="primary small" id="addRoutineButton">+ Routine</button>
+      </section>
+
+      <section id="routineList" class="stack"></section>
+
+      <section class="section-heading">
+        <div>
+          <p class="eyebrow">Langfristig</p>
+          <h2>Deine Ziele</h2>
+        </div>
+        <button class="primary small" id="addGoalButton">+ Ziel</button>
+      </section>
+
+      <section id="goalList" class="stack"></section>
+
+      <section class="stats-grid">
+        <article class="card stat">
+          <span class="stat-icon">🔥</span>
+          <strong id="bestStreak">0</strong>
+          <span class="muted">Beste Serie</span>
+        </article>
+        <article class="card stat">
+          <span class="stat-icon">🏆</span>
+          <strong id="totalSuccesses">0</strong>
+          <span class="muted">Erfolge</span>
+        </article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Hauptnavigation">
+      <button class="nav-item active">🏠<span>Heute</span></button>
+      <button class="nav-item" disabled>🎯<span>Ziele</span></button>
+      <button class="nav-item" disabled>📅<span>Kalender</span></button>
+      <button class="nav-item" disabled>⏱️<span>Arbeit</span></button>
+    </nav>
+  </div>
+
+  <dialog id="itemDialog">
+    <form method="dialog" id="itemForm">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow" id="dialogTypeLabel">Neu</p>
+          <h2 id="dialogTitle">Eintrag hinzufügen</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Schließen">✕</button>
+      </div>
+
+      <label>
+        Name
+        <input id="itemName" maxlength="60" required placeholder="z. B. 20 Minuten spazieren" />
+      </label>
+
+      <label id="targetField">
+        Zielwert
+        <input id="itemTarget" type="number" min="1" value="10" />
+      </label>
+
+      <label id="unitField">
+        Einheit
+        <input id="itemUnit" maxlength="20" value="Schritte" placeholder="z. B. Bücher, km, €" />
+      </label>
+
+      <div class="dialog-actions">
+        <button class="secondary" value="cancel">Abbrechen</button>
+        <button class="primary" id="saveItemButton" value="default">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
