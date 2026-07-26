@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>FokusYou</title>
+  <link rel="stylesheet" href="style.css?v=04">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <p class="brand">FokusYou</p>
+        <h1 id="pageTitle">Guten Morgen</h1>
+        <p class="muted" id="pageSubtitle"></p>
+      </div>
+      <button class="avatar" id="profileButton" aria-label="Profil öffnen">
+        <span>FY</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="page active" id="page-today">
+        <section class="focus-hero card">
+          <div class="hero-copy">
+            <p class="eyebrow">Dein Tag</p>
+            <h2 id="dailyMessage">Heute zählt jeder kleine Schritt.</h2>
+            <div class="hero-stats">
+              <span>Level <strong id="level">1</strong></span>
+              <span><strong id="xp">35</strong> XP</span>
+            </div>
+            <div class="progress"><span id="xpBar"></span></div>
+            <small class="muted" id="xpText"></small>
+          </div>
+
+          <button class="score-orb" id="scoreButton" aria-label="FokusScore anzeigen">
+            <span id="focusScore">0</span>
+            <small>FokusScore</small>
+          </button>
+        </section>
+
+        <section class="highlight-grid">
+          <article class="card highlight">
+            <div class="highlight-icon">🔥</div>
+            <div><strong id="streak">0 Tage</strong><small>Aktuelle Bestserie</small></div>
+          </article>
+          <article class="card highlight">
+            <div class="highlight-icon">🏆</div>
+            <div><strong id="successes">0</strong><small>Gesammelte Erfolge</small></div>
+          </article>
+        </section>
+
+        <section class="card daily-focus">
+          <div class="daily-focus-head">
+            <div>
+              <p class="eyebrow">Fokus des Tages</p>
+              <h2 id="focusTitle">Heute bewusst vorankommen</h2>
+            </div>
+            <button class="icon-btn" id="changeFocusButton">✎</button>
+          </div>
+          <p class="muted" id="focusNote">Wähle eine Aufgabe, die heute besonders wichtig ist.</p>
+        </section>
+
+        <div class="section-head">
+          <div><p class="eyebrow">Heute</p><h2>Routinen</h2></div>
+          <button class="primary small" data-add="routine">+ Neu</button>
+        </div>
+        <section class="stack" id="todayRoutines"></section>
+
+        <div class="section-head">
+          <div><p class="eyebrow">Im Blick</p><h2>Ziele</h2></div>
+          <button class="text-button" data-nav="goals">Alle ansehen</button>
+        </div>
+        <section class="stack" id="todayGoals"></section>
+
+        <div class="section-head">
+          <div><p class="eyebrow">Diese Woche</p><h2>Lebensbalance</h2></div>
+        </div>
+        <section class="balance-grid" id="balanceGrid"></section>
+
+        <section class="card achievement-card">
+          <div class="achievement-icon">✨</div>
+          <div>
+            <p class="eyebrow">Letzter Erfolg</p>
+            <h2 id="lastAchievement">Dein erster Schritt</h2>
+            <p class="muted" id="achievementText">Du hast FokusYou gestartet.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" id="page-goals">
+        <div class="section-head first">
+          <div><p class="eyebrow">Dein Weg</p><h2>Alle Ziele</h2></div>
+          <button class="primary small" data-add="goal">+ Ziel</button>
+        </div>
+
+        <section class="goal-summary card">
+          <div><strong id="goalSummaryCount">0</strong><span>aktive Ziele</span></div>
+          <div><strong id="goalSummaryProgress">0%</strong><span>Gesamtfortschritt</span></div>
+          <div><strong id="goalSummaryDone">0</strong><span>abgeschlossen</span></div>
+        </section>
+
+        <section class="stack" id="allGoals"></section>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <section class="card calendar-hero">
+          <div class="calendar-date">
+            <span id="calendarDay">01</span>
+            <small id="calendarMonth">JAN</small>
+          </div>
+          <div>
+            <p class="eyebrow">Dein Kalender</p>
+            <h2 id="calendarTitle">Heute</h2>
+            <p class="muted">Termine und Erinnerungen im Blick behalten.</p>
+          </div>
+        </section>
+
+        <div class="section-head">
+          <div><p class="eyebrow">Heute</p><h2>Termine</h2></div>
+          <button class="primary small" id="addEventButton">+ Termin</button>
+        </div>
+        <section class="stack" id="eventList"></section>
+      </section>
+
+      <section class="page" id="page-work">
+        <section class="card work-card">
+          <p class="eyebrow">Arbeitszeit heute</p>
+          <div class="timer" id="workTimer">00:00:00</div>
+          <p class="muted" id="workStatus">Noch nicht gestartet</p>
+          <button class="primary wide" id="workToggle">Arbeitszeit starten</button>
+        </section>
+
+        <section class="work-overview">
+          <article class="card quick"><span>⏱️</span><strong id="weekHours">0,0</strong><small>Stunden</small></article>
+          <article class="card quick"><span>📆</span><strong id="workDays">0</strong><small>Arbeitstage</small></article>
+          <article class="card quick"><span>➕</span><strong id="overtime">0,0</strong><small>Überstunden</small></article>
+        </section>
+
+        <section class="card work-note">
+          <p class="eyebrow">Wochenziel</p>
+          <h2>40 Stunden</h2>
+          <div class="progress"><span id="workProgress"></span></div>
+          <small class="muted" id="workProgressText">0 von 40 Stunden</small>
+        </section>
+      </section>
+
+      <section class="page" id="page-profile">
+        <section class="profile-hero card">
+          <div class="profile-avatar">FY</div>
+          <h2>Dein Profil</h2>
+          <p class="muted">Persönlicher Fortschritt, Erfolge und Freunde.</p>
+          <div class="profile-level">
+            <span>Level <strong id="profileLevel">1</strong></span>
+            <span><strong id="profileXp">35</strong> XP</span>
+          </div>
+        </section>
+
+        <section class="profile-grid">
+          <article class="card profile-stat"><strong id="profileGoals">0</strong><span>Ziele</span></article>
+          <article class="card profile-stat"><strong id="profileRoutines">0</strong><span>Routinen</span></article>
+          <article class="card profile-stat"><strong id="profileAchievements">0</strong><span>Erfolge</span></article>
+          <article class="card profile-stat"><strong id="profileStreak">0</strong><span>Beste Serie</span></article>
+        </section>
+
+        <section class="card menu-card">
+          <button data-info="friends">👥 Freunde & gemeinsame Ziele <span>›</span></button>
+          <button data-info="ranking">🏅 Ranglisten & XP-Vergleich <span>›</span></button>
+          <button data-info="badges">🏆 Abzeichen <span>›</span></button>
+          <button data-info="settings">⚙️ Einstellungen <span>›</span></button>
+        </section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-nav="today">🏠<span>Heute</span></button>
+      <button class="nav-item" data-nav="goals">🎯<span>Ziele</span></button>
+      <button class="nav-item" data-nav="calendar">📅<span>Kalender</span></button>
+      <button class="nav-item" data-nav="work">⏱️<span>Arbeit</span></button>
+    </nav>
+  </div>
+
+  <dialog id="itemDialog">
+    <form id="itemForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow" id="dialogType">Neu</p><h2 id="dialogTitle">Eintrag</h2></div>
+        <button type="button" class="icon-btn" id="closeDialog">✕</button>
+      </div>
+
+      <label>Name<input id="itemName" maxlength="60" required></label>
+
+      <label>Lebensbereich
+        <select id="itemArea">
+          <option value="health">❤️ Gesundheit</option>
+          <option value="work">💼 Arbeit</option>
+          <option value="finance">💰 Finanzen</option>
+          <option value="family">👨‍👩‍👧 Familie</option>
+          <option value="learning">📚 Lernen</option>
+          <option value="leisure">🎮 Freizeit</option>
+        </select>
+      </label>
+
+      <div id="goalFields">
+        <label>Zielwert<input id="itemTarget" type="number" min="1" value="10"></label>
+        <label>Einheit<input id="itemUnit" value="Schritte"></label>
+      </div>
+
+      <div id="eventFields">
+        <label>Uhrzeit<input id="eventTime" type="time" value="14:00"></label>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancelDialog">Abbrechen</button>
+        <button class="primary" type="submit">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="focusDialog">
+    <form id="focusForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Tagesfokus</p><h2>Was ist heute wichtig?</h2></div>
+        <button type="button" class="icon-btn" id="closeFocusDialog">✕</button>
+      </div>
+      <label>Titel<input id="focusInput" maxlength="60" required></label>
+      <label>Notiz<textarea id="focusNoteInput" maxlength="140"></textarea></label>
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancelFocusDialog">Abbrechen</button>
+        <button class="primary" type="submit">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="infoDialog">
+    <div class="info-content">
+      <button class="icon-btn info-close" id="closeInfoDialog">✕</button>
+      <p class="eyebrow">FokusYou</p>
+      <h2 id="infoTitle">Demnächst</h2>
+      <p class="muted" id="infoText"></p>
+    </div>
+  </dialog>
+
+  <script src="app.js?v=04"></script>
+</body>
+</html>
