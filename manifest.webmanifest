@@ -1,0 +1,10 @@
+{
+  "name": "FokusYou – Dein Leben. Dein Fortschritt.",
+  "short_name": "FokusYou",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#0f172a",
+  "lang": "de",
+  "icons": []
+}
